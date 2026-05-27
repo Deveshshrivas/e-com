@@ -1,9 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ShoppingBag, Star } from 'lucide-react'
 import { formatRupees } from '../utils/constants'
 
 interface ProductCardProps {
+  id: string
   name: string
   price: number
   originalPrice?: number
@@ -15,6 +17,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
+  id,
   name,
   price,
   originalPrice,
@@ -56,9 +59,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           ))}
           <span className="ml-1 text-xs font-semibold text-stone-500">({reviews})</span>
         </div>
-        <h3 className="min-h-[3.25rem] text-base font-semibold leading-snug text-stone-900">
+        <Link to={`/products/${id}`} className="block min-h-[3.25rem] text-base font-semibold leading-snug text-stone-900 hover:text-[#a86d30]">
           {name}
-        </h3>
+        </Link>
         <div className="mt-3 flex flex-wrap items-baseline gap-2">
           <span className="text-xl font-bold text-[#7a4b2a]">{formatRupees(price)}</span>
           {originalPrice ? (

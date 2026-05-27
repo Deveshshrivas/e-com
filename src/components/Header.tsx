@@ -7,11 +7,12 @@ import { useCartStore, useUIStore } from '../store'
 
 const navItems = [
   { label: 'Home', to: '/' },
+  { label: 'Shop', to: '/shop' },
   { label: 'Dining Tables', to: '/shop?category=dining-tables' },
   { label: 'Wall Art', to: '/shop?category=wall-art' },
   { label: 'Wall Clock', to: '/shop?category=wall-clocks' },
-  { label: 'Side Table', to: '/shop?category=side-tables' },
-  { label: 'Lamps', to: '/shop?category=lamps' },
+  { label: 'About', to: '/about' },
+  { label: 'Contact', to: '/contact' },
 ]
 
 export const Header: React.FC = () => {
@@ -53,12 +54,12 @@ export const Header: React.FC = () => {
         </nav>
 
         <div className="hidden items-center gap-4 md:flex">
-          <button className="p-2 text-stone-700 transition-colors hover:text-[#a86d30]" aria-label="Search">
+          <Link to="/search" className="p-2 text-stone-700 transition-colors hover:text-[#a86d30]" aria-label="Search">
             <Search size={21} />
-          </button>
-          <button className="p-2 text-stone-700 transition-colors hover:text-[#a86d30]" aria-label="Account">
+          </Link>
+          <Link to="/login" className="p-2 text-stone-700 transition-colors hover:text-[#a86d30]" aria-label="Account">
             <User size={21} />
-          </button>
+          </Link>
           <Link to="/cart" className="relative p-2 text-stone-700 transition-colors hover:text-[#a86d30]">
             <ShoppingBag size={22} />
             {cartCount > 0 && (

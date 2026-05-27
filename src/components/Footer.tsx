@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from 'lucide-react'
 
 export const Footer: React.FC = () => {
@@ -26,8 +27,26 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          <FooterList title="Shop" items={['Dining Tables', 'Wall Art', 'Wall Clock', 'Side Table', 'Lamps']} />
-          <FooterList title="Help" items={['Contact Us', 'Track Order', 'Shipping Policy', 'Returns', 'FAQ']} />
+          <FooterList
+            title="Shop"
+            items={[
+              ['Dining Tables', '/shop?category=dining-tables'],
+              ['Wall Art', '/shop?category=wall-art'],
+              ['Wall Clock', '/shop?category=wall-clocks'],
+              ['Side Table', '/shop?category=side-tables'],
+              ['Lamps', '/shop?category=lamps'],
+            ]}
+          />
+          <FooterList
+            title="Help"
+            items={[
+              ['Contact Us', '/contact'],
+              ['Track Order', '/track-order'],
+              ['Shipping Policy', '/shipping-policy'],
+              ['Returns', '/returns'],
+              ['FAQ', '/faq'],
+            ]}
+          />
 
           <div>
             <h3 className="mb-4 text-lg font-bold">Contact</h3>
@@ -46,10 +65,10 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="flex flex-col justify-between gap-4 border-t border-white/10 py-6 text-sm text-stone-400 md:flex-row">
-          <p>© 2026 Handicrafts Town clone. Built for local demo.</p>
+          <p>Copyright 2026 Handicrafts Town clone. Built for local demo.</p>
           <div className="flex gap-5">
-            <a href="#" className="hover:text-[#e9bf7a]">Privacy Policy</a>
-            <a href="#" className="hover:text-[#e9bf7a]">Terms Of Service</a>
+            <Link to="/privacy-policy" className="hover:text-[#e9bf7a]">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-[#e9bf7a]">Terms Of Service</Link>
           </div>
         </div>
       </div>
@@ -57,15 +76,15 @@ export const Footer: React.FC = () => {
   )
 }
 
-const FooterList: React.FC<{ title: string; items: string[] }> = ({ title, items }) => (
+const FooterList: React.FC<{ title: string; items: string[][] }> = ({ title, items }) => (
   <div>
     <h3 className="mb-4 text-lg font-bold">{title}</h3>
     <ul className="space-y-2 text-sm text-stone-300">
-      {items.map((item) => (
+      {items.map(([item, to]) => (
         <li key={item}>
-          <a href="#" className="transition hover:text-[#e9bf7a]">
+          <Link to={to} className="transition hover:text-[#e9bf7a]">
             {item}
-          </a>
+          </Link>
         </li>
       ))}
     </ul>
